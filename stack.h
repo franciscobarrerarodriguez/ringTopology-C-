@@ -1,6 +1,5 @@
-#include<iostream>
-
 #include "nodeStack.h"
+#include<iostream>
 
 template <class T>
 

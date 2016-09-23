@@ -1,4 +1,4 @@
-#include "../h/nodeStack.h"
+#include "nodeStack.h"
 #include <iostream>
 template <class T>
 nodeStack<T>::nodeStack(T *information){

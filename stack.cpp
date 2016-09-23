@@ -1,7 +1,6 @@
+#include "stack.h"
 #include <string.h>
 #include<iostream>
-
-#include "../h/stack.h"
 
 template <class T>
 stack<T>::stack(){

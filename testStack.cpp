@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../h/stack.h"
-#include "../h/message.h"
+#include "stack.h"
+#include "message.h"
 using namespace std;
 
 int main(){
