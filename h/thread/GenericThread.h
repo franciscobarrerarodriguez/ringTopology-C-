@@ -1,19 +1,19 @@
 #include <iostream>
 #include <pthread.h>
-#include "../iRunnable.h"
+#include "IRunnable.h"
 
 using namespace std;
 
-class Thread{
+class GenericThread{
 
 public:
 
   pthread_t pthreadId;
   IRunnable *iRunnable;
-  void createThreadListen();
+  void createThread();
   static void *function(void *p){
-    ((Thread *)p)->iRunnable->run();
+    ((GenericThread *)p)->iRunnable->run();
     return 0;
   }
-  Thread(IRunnable *);
+  GenericThread(IRunnable *);
 };

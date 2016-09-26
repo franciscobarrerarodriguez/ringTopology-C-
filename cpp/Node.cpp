@@ -13,25 +13,11 @@ Node::Node(string ip, int port){
   this->ip = ip;
   this->port = port;
   this->server = new Server(this->port);
-  this->listen = new Listen();
-  // if(this->server->initializeServer() == INVALID_SOCKET){
-  //   cout<<"Servidor no iniciado"<<endl;
-  // }else{
-  //   cout << "Servidor iniciado" << endl;
-  //   if(this->server->listenClient() == INVALID_SOCKET){
-  //     cout << "Bind fallo" << endl;
-  //   }else{
-  //     std::cout << "Bind funcionando, esperando cliente . . ." << std::endl;
-  //     while(this->server->getFlag() == true){
-	// 			if(this->server->acceptClient() == INVALID_SOCKET){
-	// 					this->server->setFlag(false);
-	// 					while (true);
-	// 			}else{
-	// 				cout<<"Cliente aceptado"<<endl;
-	// 			}
-	// 		}
-  //   }
-  // }
+  this->serverActions = new ServerActions(this->server);
+  this->threadOne = new GenericThread(this->serverActions);
+  this->threadOne->createThread();
+  /* No permite que el programa se termine de ejecutar*/
+  while(true);
 }
 
 

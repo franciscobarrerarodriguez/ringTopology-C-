@@ -1,4 +1,4 @@
-#include "../h/Server.h"
+#include "../../h/server/Server.h"
 
 Server::Server(int port){
   this->port = port;
@@ -10,6 +10,7 @@ Server::Server(int port){
   this->address=(inet_ntoa(((struct sockaddr_in *)&this->iFREQ.ifr_addr)->sin_addr));
   //*********************************************************************************
   this->flag = true;
+  this->state = 0;
 };
 
 int Server::initializeServer(){
@@ -51,4 +52,12 @@ void Server::setFlag(bool flag){
 
 bool Server::getFlag(){
   return this->flag;
+}
+
+void Server::setState(int state){
+  this->state = state;
+};
+
+int Server::getState(){
+  return this->state;
 }

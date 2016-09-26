@@ -1,6 +1,8 @@
-#include "Client.h"
-#include "Server.h"
-#include "listen/Listen.h"
+//Borrar esto despues
+#include "client/Client.h"
+// #include "server/Server.h"
+#include "actions/ServerActions.h"
+#include "thread/GenericThread.h"
 
 #include<iostream>
 #include<string.h>
@@ -37,8 +39,8 @@ private:
 
 	int port;
 	string ip;
-	Listen *listen;
-	Thread *threadSever;
+	ServerActions *serverActions;
+	GenericThread *threadOne;
 	Client *client;
 	Server *server;
 };

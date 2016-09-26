@@ -1,3 +1,6 @@
+#ifndef IRUNNABLE_H_
+#define IRUNNABLE_H_
+
 class IRunnable {
 
 public:
@@ -14,3 +17,4 @@ private :
 
 	bool start;
 };
+#endif /* IRUNNABLE_H_ */

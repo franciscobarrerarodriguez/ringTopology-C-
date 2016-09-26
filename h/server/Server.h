@@ -36,12 +36,17 @@ public:
   void setFlag(bool);
   bool getFlag();
 
+  void setState(int);
+  int getState();
+
 private:
 
   int ip;
   int port;
   int socket_server;
   int socket_conn;
+  /* Estado 0 para configuracion, estado 1 para escuchar. */
+  int state;
   bool flag;
 
   string address;

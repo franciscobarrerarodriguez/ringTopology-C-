@@ -1,4 +1,4 @@
-#include "../h/iRunnable.h"
+#include "../../h/thread/IRunnable.h"
 
 IRunnable::IRunnable(){
 }
