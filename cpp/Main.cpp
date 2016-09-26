@@ -4,11 +4,13 @@
 int main(){
 
   string ip ="192.168.43.243";
-  int port = 1233;
+  int serverPort = 1233;
+  int clientPort = 1234;
 
-  Node *node = new Node(ip, port);
+  Node *node = new Node(ip, serverPort, clientPort);
   cout << node->getIp() << endl;
-  cout << node->getPort() << endl;
+  cout << node->getServerPort() << endl;
+  cout << node->getClientPort() << endl;
 
   return 0;
 }

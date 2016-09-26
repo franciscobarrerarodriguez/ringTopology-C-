@@ -9,13 +9,19 @@
 
 using namespace std;
 
-Node::Node(string ip, int port){
+Node::Node(string ip, int serverPort, int clientPort){
   this->ip = ip;
-  this->port = port;
-  this->server = new Server(this->port);
+  this->serverPort = serverPort;
+  this->clientPort = clientPort;
+
+  this->server = new Server(this->serverPort);
   this->serverActions = new ServerActions(this->server);
-  this->threadOne = new GenericThread(this->serverActions);
-  this->threadOne->createThread();
+  this->serverThread = new GenericThread(this->serverActions);
+  this->serverThread->createThread();
+
+  this->client = new Client(this->ip, this->clientPort);
+  this->clientActions = new ClientActions(this->client);
+
   /* No permite que el programa se termine de ejecutar*/
   while(true);
 }
@@ -48,12 +54,20 @@ Node::Node(string ip, int port){
 
 //void Node::threadFour(){}
 
-void Node::setPort(int port){
-  this->port = port;
+void Node::setServerPort(int port){
+  this->serverPort = port;
 };
 
-int Node::getPort(){
-  return  this->port;
+int Node::getServerPort(){
+  return  this->serverPort;
+};
+
+void Node::setClientPort(int port){
+  this->clientPort = port;
+};
+
+int Node::getClientPort(){
+  return  this->clientPort;
 };
 
 void Node::setIp(string ip){

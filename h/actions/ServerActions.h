@@ -13,6 +13,9 @@ public:
 
   void run();
 
+  void init();
+  void waitingForAMessage();
+
   void setSocket_conn();
   int getSocket_conn();
 

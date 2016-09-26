@@ -3,7 +3,9 @@
 
 using namespace std;
 
-Client::Client(){
+Client::Client(string ip, int port){
+	this->ip = ip;
+	this->port = port;
 	this->socket_server = socket(PF_INET, SOCK_STREAM,0);
 };
 

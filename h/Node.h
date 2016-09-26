@@ -1,7 +1,5 @@
-//Borrar esto despues
-#include "client/Client.h"
-// #include "server/Server.h"
 #include "actions/ServerActions.h"
+#include "actions/ClientActions.h"
 #include "thread/GenericThread.h"
 
 #include<iostream>
@@ -13,7 +11,7 @@ class Node {
 
 public:
 
-	Node(string, int);
+	Node(string, int serverPort, int clientPort);
 	~Node();
 
 	//void accept();
@@ -24,8 +22,10 @@ public:
 	//void threadTwo();
 	//void threadThree();
 	//void threadFour();
-	int getPort();
-	void setPort(int port);
+	int getServerPort();
+	void setServerPort(int);
+	int getClientPort();
+	void setClientPort(int);
 	string getIp();
 	void setIp(string ip);
 	// void setClient(Client *client);
@@ -37,10 +37,17 @@ public:
 
 private:
 
-	int port;
+	int serverPort;
+	int clientPort;
+
 	string ip;
+
 	ServerActions *serverActions;
-	GenericThread *threadOne;
+	ClientActions *clientActions;
+
+	GenericThread *serverThread;
+	GenericThread *clientThread;
+
 	Client *client;
 	Server *server;
 };

@@ -12,7 +12,7 @@ class Client{
 
 public:
 
-	Client();
+	Client(string, int);
 	~Client();
 
 	int initializeClient();
