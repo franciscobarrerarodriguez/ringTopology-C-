@@ -14,6 +14,11 @@ Node::Node(string ip, int serverPort, int clientPort){
   this->serverPort = serverPort;
   this->clientPort = clientPort;
 
+  /* Creacion de dos Stack; izquierda y derecha. No se pueden crear no
+  se porque...*/
+  //this->stackLeft = new Stack<Message>();
+  //this->stackRight = new Stack<Message>();
+
   this->server = new Server(this->serverPort);
   this->serverActions = new ServerActions(this->server);
   this->serverThread = new GenericThread(this->serverActions);
@@ -23,36 +28,13 @@ Node::Node(string ip, int serverPort, int clientPort){
   this->clientActions = new ClientActions(this->client);
   this->clientThread = new GenericThread(this->clientActions);
   this->clientThread->createThread();
+
   /* No permite que el programa se termine de ejecutar*/
   while(true);
 }
 
-
-//void Node::show(){
-
-//}
-//void Node::accept(){
-
-//}
-
-//void Node::listen(){
-
-//}
-
-//void Node::send(){
-
-//}
-
-//void Node::connect(){
-
-//}
-
-//void Node::threadOne(){}
-
-//void Node::threadTwo(){}
-
+/* Recordar estos hilos que nos faltan */
 //void Node::threadThree(){}
-
 //void Node::threadFour(){}
 
 void Node::setServerPort(int port){
@@ -78,11 +60,3 @@ void Node::setIp(string ip){
 string Node::getIp(){
   return this->ip;
 };
-
-// void Node::setClient(Client *client){
-// this->client = client;
-// };
-
-// Client Node::getClient(){
-// return this->*client;
-// };

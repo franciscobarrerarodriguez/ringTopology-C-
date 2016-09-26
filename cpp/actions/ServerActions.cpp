@@ -26,7 +26,8 @@ void ServerActions::init() {
 };
 
 void ServerActions::waitingForAMessage() {
-  cout << "/* esperando por mensajes . . . */" << endl;
+  /* Aqui es donde se reciben los mensajes,
+  recibirlos a agregarlos a la pila del servidor.*/
 };
 
 void ServerActions::run(){

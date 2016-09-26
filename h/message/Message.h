@@ -1,19 +1,21 @@
+#include <time.h>
 #include<iostream>
 #include<string>
-#include "time.h"
+
 using namespace std;
 
-class message{
+class Message{
 
-	public:
-	message();
-	message(string);
+public:
+	
+	Message();
+	Message(string);
 	string getIp();
 	void setIp(string ip);
-	
-	private:
+
+private:
 	string ip;
 	time_t arrivalHour;
 	time_t endHour;
-	
+
 };

@@ -1,3 +1,5 @@
+#include "../message/Message.h"
+
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <string.h>
@@ -18,9 +20,6 @@ public:
 	int initializeClient();
 	int connectClient();
 
-	// void send();
-	// void closeConnectionClient();
-
 	void setPort(int port);
 	int getPort();
 
@@ -33,6 +32,9 @@ public:
 	void setState(int state);
 	int getState();
 
+	void setMessage(Message *message);
+	Message getMessage();
+
 private:
 
 	int port;
@@ -44,4 +46,7 @@ private:
 	string ip;
 
 	struct sockaddr_in server_address;
+
+	/* Este es el mensaje que se va a enviar */
+	Message *message;
 };

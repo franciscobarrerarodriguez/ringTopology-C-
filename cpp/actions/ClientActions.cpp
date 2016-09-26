@@ -20,18 +20,24 @@ void ClientActions::init(){
 };
 
 void ClientActions::sendingMessage() {
-  std::cout << "/* Enviando los mensajes . . . */" << std::endl;
+  this->client->setMessage(new Message("ip"));
+  /*
+  * Escribe aqui tu codigo de como se va a enviar el mensaje,
+  * Es decir aqui el nodo genera su propio mensaje y lo envia;
+  * Tambien configurar cada cuanto se envia un mensaje o como se envia un nuevo
+  * mensaje.
+  */
 }
 
 void ClientActions::run() {
-while(this->state == true){
-  switch (this->client->getState()) {
-    case 0:
-    this->init();
-    break;
-    case 1:
-    this->sendingMessage();
-    break;
+  while(this->state == true){
+    switch (this->client->getState()) {
+      case 0:
+      this->init();
+      break;
+      case 1:
+      this->sendingMessage();
+      break;
+    }
   }
-}
 }

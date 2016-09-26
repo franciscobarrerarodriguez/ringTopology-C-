@@ -1,24 +1,22 @@
-#include "stack.h"
-#include <string.h>
-#include<iostream>
+#include "../../h/stack/Stack.h"
 
 template <class T>
-stack<T>::stack(){
-this.top = NULL;
+Stack<T>::Stack(){
+	this.top = NULL;
 }
 
 template <class T>
-bool stack<T>::isEmpty(){
+bool Stack<T>::isEmpty(){
 	return this.top == NULL;
 }
 
 template <class T>
-void stack<T>::push(T *information){
-	this.top = new nodeStack<T>(information, this.top);
+void Stack<T>::push(T *information){
+	this.top = new NodeStack<T>(information, this.top);
 }
 
 template <class T>
-T *stack<T>::pop(){
+T *Stack<T>::pop(){
 	if(this.top == NULL){
 		return NULL;
 	}else{

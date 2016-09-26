@@ -1,6 +1,7 @@
 #include "actions/ServerActions.h"
 #include "actions/ClientActions.h"
 #include "thread/GenericThread.h"
+#include "stack/Stack.h"
 
 #include<iostream>
 #include<string.h>
@@ -14,12 +15,6 @@ public:
 	Node(string, int serverPort, int clientPort);
 	~Node();
 
-	//void accept();
-	//void listen();
-	//void send();
-	//void connect();
-	//void threadOne();
-	//void threadTwo();
 	//void threadThree();
 	//void threadFour();
 	int getServerPort();
@@ -31,9 +26,6 @@ public:
 	// void setClient(Client *client);
 	// Client getClient();
 	//void show();
-	//private:
-	//stack stackLeft;
-	//stack stackRight;
 
 private:
 
@@ -50,4 +42,8 @@ private:
 
 	Client *client;
 	Server *server;
+
+	/* Stack de izquierda a derecha */
+	Stack<Message> *stackLeft;
+	Stack<Message> *stackRight;
 };

@@ -58,6 +58,15 @@ int Client::getSocket_server(){
 void Client::setState(int state){
 	this->state = state;
 };
+
 int Client::getState(){
 	return this->state;
+};
+
+void Client::setMessage(Message *message){
+	this->message = message;
+};
+
+Message Client::getMessage(){
+	return *this->message;
 };
