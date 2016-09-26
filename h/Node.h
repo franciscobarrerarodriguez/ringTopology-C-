@@ -1,21 +1,19 @@
 #include "Client.h"
+#include "Server.h"
+#include "listen/Listen.h"
 
 #include<iostream>
 #include<string.h>
-//#include "stack.h"
-
 
 using namespace std;
 
 class Node {
 
-	public:
+public:
 
-	int port;
-	string ip;
-	Client *client;
-//	Node(string, int);
-	Node();
+	Node(string, int);
+	~Node();
+
 	//void accept();
 	//void listen();
 	//void send();
@@ -28,8 +26,19 @@ class Node {
 	void setPort(int port);
 	string getIp();
 	void setIp(string ip);
+	// void setClient(Client *client);
+	// Client getClient();
 	//void show();
 	//private:
 	//stack stackLeft;
 	//stack stackRight;
+
+private:
+
+	int port;
+	string ip;
+	Listen *listen;
+	Thread *threadSever;
+	Client *client;
+	Server *server;
 };

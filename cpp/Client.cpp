@@ -1,11 +1,11 @@
 #include "../h/Client.h"
-#include <unistd.h>
+// #include <unistd.h>
 
 using namespace std;
 
 Client::Client(){
-this->socket_server = socket(PF_INET, SOCK_STREAM,0);
-}
+	this->socket_server = socket(PF_INET, SOCK_STREAM,0);
+};
 
 int Client::initializeClient(){
 	if (this->socket_server == INVALID_SOCKET){
@@ -19,6 +19,15 @@ int Client::initializeClient(){
 	}
 };
 
+int Client::connectClient(){
+	if (connect(this->socket_server, (struct sockaddr *)&this->server_address, sizeof(this->server_address)) == INVALID_SOCKET){
+		return -1;
+	}else{
+		return 0;
+	}
+};
+
+/* Getters & Setters */
 void Client::setPort(int port){
 	this->port = port;
 };
