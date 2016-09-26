@@ -30,10 +30,16 @@ public:
 	void setSocket_server(int socket_server);
 	int getSocket_server();
 
+	void setState(int state);
+	int getState();
+
 private:
 
 	int port;
 	int socket_server;
+
+	/* Estado 0 para configuracion, estado 1 para enviar. */
+	int state;
 
 	string ip;
 

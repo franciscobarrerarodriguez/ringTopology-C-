@@ -21,7 +21,8 @@ Node::Node(string ip, int serverPort, int clientPort){
 
   this->client = new Client(this->ip, this->clientPort);
   this->clientActions = new ClientActions(this->client);
-
+  this->clientThread = new GenericThread(this->clientActions);
+  this->clientThread->createThread();
   /* No permite que el programa se termine de ejecutar*/
   while(true);
 }

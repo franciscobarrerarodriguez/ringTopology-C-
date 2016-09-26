@@ -8,12 +8,13 @@ using namespace std;
 class ClientActions:public IRunnable{
 
 public:
-
+  
   ClientActions(Client *);
 
-  void run();
-
   void init();
+  void sendingMessage();
+
+  void run();
 
 private:
   Client *client;

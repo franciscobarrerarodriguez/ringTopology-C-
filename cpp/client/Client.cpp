@@ -7,6 +7,7 @@ Client::Client(string ip, int port){
 	this->ip = ip;
 	this->port = port;
 	this->socket_server = socket(PF_INET, SOCK_STREAM,0);
+	this->state = 0;
 };
 
 int Client::initializeClient(){
@@ -52,4 +53,11 @@ void Client::setSocket_server(int socket_server){
 
 int Client::getSocket_server(){
 	return this->socket_server;
+};
+
+void Client::setState(int state){
+	this->state = state;
+};
+int Client::getState(){
+	return this->state;
 };
