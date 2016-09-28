@@ -14,10 +14,8 @@ Node::Node(string ip, int serverPort, int clientPort){
   this->serverPort = serverPort;
   this->clientPort = clientPort;
 
-  /* Creacion de dos Stack; izquierda y derecha. No se pueden crear no
-  se porque...*/
-  //this->stackLeft = new Stack<Message>();
-  //this->stackRight = new Stack<Message>();
+  /* Creacion de dos Stack...*/
+
 
   this->server = new Server(this->serverPort);
   this->serverActions = new ServerActions(this->server);

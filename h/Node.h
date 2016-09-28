@@ -1,7 +1,6 @@
 #include "actions/ServerActions.h"
 #include "actions/ClientActions.h"
 #include "thread/GenericThread.h"
-#include "stack/Stack.h"
 
 #include<iostream>
 #include<string.h>
@@ -44,6 +43,4 @@ private:
 	Server *server;
 
 	/* Stack de izquierda a derecha */
-	Stack<Message> *stackLeft;
-	Stack<Message> *stackRight;
 };
