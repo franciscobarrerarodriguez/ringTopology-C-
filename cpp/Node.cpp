@@ -16,6 +16,7 @@ Node::Node(string ip, int serverPort, int clientPort){
 
   /* Creacion de dos Stack...*/
   this->leftSimpleQueue = new SimpleQueue();
+  this->rightSimpleQueue = new SimpleQueue();
 
   this->server = new Server(this->serverPort);
   this->serverActions = new ServerActions(this->server);

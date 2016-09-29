@@ -45,4 +45,5 @@ private:
 
 	/* Stack de izquierda a derecha */
 	SimpleQueue *leftSimpleQueue;
+	SimpleQueue *rightSimpleQueue;
 };
