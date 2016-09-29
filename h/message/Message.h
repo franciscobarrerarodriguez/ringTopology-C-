@@ -1,3 +1,6 @@
+#ifndef MESSAGE_H_
+#define MESSAGE_H_
+
 #include <time.h>
 #include<iostream>
 #include<string>
@@ -7,7 +10,7 @@ using namespace std;
 class Message{
 
 public:
-	
+
 	Message();
 	Message(string);
 	string getIp();
@@ -19,3 +22,4 @@ private:
 	time_t endHour;
 
 };
+#endif /* MESSAGE_H_ */
