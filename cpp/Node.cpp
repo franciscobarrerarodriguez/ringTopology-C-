@@ -14,16 +14,25 @@ Node::Node(string ip, int serverPort, int clientPort){
   this->serverPort = serverPort;
   this->clientPort = clientPort;
 
-  /* Creacion de dos Stack...*/
-  this->leftSimpleQueue = new SimpleQueue();
+
+  /* Creacion de dos Queue...*/
   this->rightSimpleQueue = new SimpleQueue();
+  this->leftSimpleQueue = new SimpleQueue();
 
   this->server = new Server(this->serverPort);
+
+  this->server->setLeftSimpleQueue(this->leftSimpleQueue);
+  this->server->setRightSimpleQueue(this->rightSimpleQueue);
+
   this->serverActions = new ServerActions(this->server);
   this->serverThread = new GenericThread(this->serverActions);
   this->serverThread->createThread();
 
   this->client = new Client(this->ip, this->clientPort);
+
+  this->client->setLeftSimpleQueue(this->leftSimpleQueue);
+  this->client->setRightSimpleQueue(this->rightSimpleQueue);
+
   this->clientActions = new ClientActions(this->client);
   this->clientThread = new GenericThread(this->clientActions);
   this->clientThread->createThread();
