@@ -28,6 +28,7 @@ public:
   int initializeServer();
   int listenClient();
   int acceptClient();
+  void receiveMessage();
 
   void setPort(int port);
   int getPort();

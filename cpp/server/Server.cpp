@@ -45,6 +45,10 @@ int Server::acceptClient(){
   }
 };
 
+void Server::receiveMessage(){
+  
+};
+
 /* Getters & Setters */
 void Server::setFlag(bool flag){
   this->flag = flag;

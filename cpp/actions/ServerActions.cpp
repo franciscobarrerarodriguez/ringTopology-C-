@@ -28,6 +28,7 @@ void ServerActions::init() {
 void ServerActions::waitingForAMessage() {
   /* Aqui es donde se reciben los mensajes,
   recibirlos a agregarlos a la pila del servidor.*/
+  this->server->receiveMessage();
 };
 
 void ServerActions::run(){
