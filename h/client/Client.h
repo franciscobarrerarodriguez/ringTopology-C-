@@ -1,3 +1,4 @@
+#include "../queue/SimpleQueue.h"
 #include "../message/Message.h"
 
 #include <sys/socket.h>
@@ -35,6 +36,12 @@ public:
 	void setMessage(Message *message);
 	Message getMessage();
 
+	void setLeftSimpleQueue(SimpleQueue *simpleQueue);
+  SimpleQueue getLeftSimpleQueue();
+
+  void setRightSimpleQueue(SimpleQueue *simpleQueue);
+  SimpleQueue getRightSimpleQueue();
+
 private:
 
 	int port;
@@ -49,4 +56,7 @@ private:
 
 	/* Este es el mensaje que se va a enviar */
 	Message *message;
+	/* Stack de izquierda a derecha */
+	SimpleQueue *leftSimpleQueue;
+  SimpleQueue *rightSimpleQueue;
 };

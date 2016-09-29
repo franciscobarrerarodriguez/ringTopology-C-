@@ -1,6 +1,7 @@
 #include "actions/ServerActions.h"
 #include "actions/ClientActions.h"
 #include "thread/GenericThread.h"
+#include "queue/SimpleQueue.h"
 
 #include<iostream>
 #include<string.h>
@@ -43,4 +44,5 @@ private:
 	Server *server;
 
 	/* Stack de izquierda a derecha */
+	SimpleQueue *leftSimpleQueue;
 };

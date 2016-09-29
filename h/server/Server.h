@@ -1,3 +1,5 @@
+#include "../queue/SimpleQueue.h"
+
 #include <sys/socket.h>
 #include <netdb.h>
 #include <net/if.h>
@@ -39,6 +41,12 @@ public:
   void setState(int);
   int getState();
 
+  void setLeftSimpleQueue(SimpleQueue *simpleQueue);
+  SimpleQueue getLeftSimpleQueue();
+
+  void setRightSimpleQueue(SimpleQueue *simpleQueue);
+  SimpleQueue getRightSimpleQueue();
+
 private:
 
   int ip;
@@ -50,4 +58,7 @@ private:
   bool flag;
 
   string address;
+  /* Stack de izquierda a derecha */
+	SimpleQueue *leftSimpleQueue;
+  SimpleQueue *rightSimpleQueue;
 };

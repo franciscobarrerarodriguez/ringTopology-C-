@@ -26,13 +26,13 @@ int Server::initializeServer(){
 };
 
 int Server::listenClient(){
-	if(bind(this->socket_server, (sockaddr *)&this->server_address,(socklen_t)sizeof(this->server_address)) < 0){
-		return -1;
-	}else{
-		// Máximo 1 puerto de conexion.
-		listen(this->socket_server ,1);
-		return 0;
-	}
+  if(bind(this->socket_server, (sockaddr *)&this->server_address,(socklen_t)sizeof(this->server_address)) < 0){
+    return -1;
+  }else{
+    // Máximo 1 puerto de conexion.
+    listen(this->socket_server ,1);
+    return 0;
+  }
 };
 
 int Server::acceptClient(){
@@ -52,7 +52,7 @@ void Server::setFlag(bool flag){
 
 bool Server::getFlag(){
   return this->flag;
-}
+};
 
 void Server::setState(int state){
   this->state = state;
@@ -60,4 +60,20 @@ void Server::setState(int state){
 
 int Server::getState(){
   return this->state;
-}
+};
+
+void Server::setLeftSimpleQueue(SimpleQueue *simpleQueue){
+  this->leftSimpleQueue = simpleQueue;
+};
+
+SimpleQueue Server::getLeftSimpleQueue(){
+  return *this->leftSimpleQueue;
+};
+
+void Server::setRightSimpleQueue(SimpleQueue *simpleQueue){
+  this->rightSimpleQueue = simpleQueue;
+};
+
+SimpleQueue Server::getRightSimpleQueue(){
+  return *this->rightSimpleQueue;
+};

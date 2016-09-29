@@ -70,3 +70,19 @@ void Client::setMessage(Message *message){
 Message Client::getMessage(){
 	return *this->message;
 };
+
+void Client::setLeftSimpleQueue(SimpleQueue *simpleQueue){
+  this->leftSimpleQueue = simpleQueue;
+};
+
+SimpleQueue Client::getLeftSimpleQueue(){
+  return *this->leftSimpleQueue;
+};
+
+void Client::setRightSimpleQueue(SimpleQueue *simpleQueue){
+  this->rightSimpleQueue = simpleQueue;
+};
+
+SimpleQueue Client::getRightSimpleQueue(){
+  return *this->rightSimpleQueue;
+};
