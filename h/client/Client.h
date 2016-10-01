@@ -20,6 +20,7 @@ public:
 
 	int initializeClient();
 	int connectClient();
+	int sendMessage();
 
 	void setPort(int port);
 	int getPort();
@@ -59,4 +60,6 @@ private:
 	/* Stack de izquierda a derecha */
 	SimpleQueue *leftSimpleQueue;
   SimpleQueue *rightSimpleQueue;
+
+	bool enviado;
 };

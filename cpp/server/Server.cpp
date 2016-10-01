@@ -45,8 +45,17 @@ int Server::acceptClient(){
   }
 };
 
-void Server::receiveMessage(){
-  
+int Server::receiveMessage(){
+  char message[10000] = "";
+  int recieve = recv(this->socket_conn, message, sizeof(message), 0);
+  if(recieve == -1){
+    cout << "/* No se recibio mensaje */" << endl;
+  }else{
+    if(message[0]){
+      cout << message << endl;
+    }
+  }
+  return recieve;
 };
 
 /* Getters & Setters */

@@ -8,6 +8,8 @@ Client::Client(string ip, int port){
 	this->port = port;
 	this->socket_server = socket(PF_INET, SOCK_STREAM,0);
 	this->state = 0;
+
+	this->enviado = false;
 };
 
 int Client::initializeClient(){
@@ -28,6 +30,23 @@ int Client::connectClient(){
 	}else{
 		return 0;
 	}
+};
+
+int Client::sendMessage(){
+	int s = 0;
+	if(this->enviado == false){
+		const char *msg = NULL;
+		string message = "Hola maldito computador";
+		msg = message.c_str();
+		int s = send(this->socket_server, msg, strlen(msg), 0);
+		if(s == INVALID_SOCKET){
+			return INVALID_SOCKET;
+		}else{
+			this->enviado = true;
+			return s;
+		}
+	}
+	return s;
 };
 
 /* Getters & Setters */
@@ -72,17 +91,17 @@ Message Client::getMessage(){
 };
 
 void Client::setLeftSimpleQueue(SimpleQueue *simpleQueue){
-  this->leftSimpleQueue = simpleQueue;
+	this->leftSimpleQueue = simpleQueue;
 };
 
 SimpleQueue Client::getLeftSimpleQueue(){
-  return *this->leftSimpleQueue;
+	return *this->leftSimpleQueue;
 };
 
 void Client::setRightSimpleQueue(SimpleQueue *simpleQueue){
-  this->rightSimpleQueue = simpleQueue;
+	this->rightSimpleQueue = simpleQueue;
 };
 
 SimpleQueue Client::getRightSimpleQueue(){
-  return *this->rightSimpleQueue;
+	return *this->rightSimpleQueue;
 };

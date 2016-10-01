@@ -6,7 +6,6 @@
 #include <sys/ioctl.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-
 #include <string.h>
 #include <iostream>
 
@@ -28,7 +27,7 @@ public:
   int initializeServer();
   int listenClient();
   int acceptClient();
-  void receiveMessage();
+  int receiveMessage();
 
   void setPort(int port);
   int getPort();

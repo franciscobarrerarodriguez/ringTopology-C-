@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Message{
+struct Message{
 
 public:
 
@@ -17,6 +17,7 @@ public:
 	void setIp(string ip);
 
 private:
+
 	string ip;
 	time_t arrivalHour;
 	time_t endHour;
