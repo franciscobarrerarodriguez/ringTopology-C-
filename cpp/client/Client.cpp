@@ -8,8 +8,7 @@ Client::Client(string ip, int port){
 	this->port = port;
 	this->socket_server = socket(PF_INET, SOCK_STREAM,0);
 	this->state = 0;
-
-	this->enviado = false;
+	this->created = false;
 };
 
 int Client::initializeClient(){
@@ -33,21 +32,41 @@ int Client::connectClient(){
 };
 
 int Client::sendMessage(){
-	int s = 0;
-	if(this->enviado == false){
-		const char *msg = NULL;
-		string message = "Hola maldito computador";
-		msg = message.c_str();
-		int s = send(this->socket_server, msg, strlen(msg), 0);
-		if(s == INVALID_SOCKET){
-			return INVALID_SOCKET;
-		}else{
-			this->enviado = true;
-			return s;
-		}
-	}
-	return s;
+	// if(){}
+	// 1. Parse a JSON string into DOM.
+	// const char* json = "{\"project\":\"rapidjson\",\"stars\":10}";
+	// Document d;
+	// d.Parse(json);
+	// // 2. Modify it by DOM.
+	// Value& s = d["stars"];
+	// s.SetInt(s.GetInt() + 1);
+	// // 3. Stringify the DOM
+	// StringBuffer buffer;
+	// Writer<StringBuffer> writer(buffer);
+	// d.Accept(writer);
+	// // Output {"project":"rapidjson","stars":11}
+	// cout << buffer.GetString() << endl;
+	// return 0;
+	// int s = 0;
+	// if(this->created == false){
+	// 	const char *msg = NULL;
+	// 	string message = "Hola maldito computador";
+	// 	msg = message.c_str();
+	// 	int s = send(this->socket_server, msg, strlen(msg), 0);
+	// 	if(s == INVALID_SOCKET){
+	// 		return INVALID_SOCKET;
+	// 	}else{
+	// 		this->created = true;
+	// 		return s;
+	// 	}
+	// }
+	return 1;
 };
+
+void Client::create(){
+	this->leftSimpleQueue->pop(this->message = new Message("hola soy un gordito"));
+	this->created = true;
+}
 
 /* Getters & Setters */
 void Client::setPort(int port){
@@ -104,4 +123,11 @@ void Client::setRightSimpleQueue(SimpleQueue *simpleQueue){
 
 SimpleQueue Client::getRightSimpleQueue(){
 	return *this->rightSimpleQueue;
+};
+
+void Client::setCreated(bool created){
+	this->created = created;
+};
+bool Client::isCreated(){
+	return this->created;
 };

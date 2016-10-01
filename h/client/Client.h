@@ -6,9 +6,16 @@
 #include <string.h>
 #include <iostream>
 
+// Lib rapidjson ----------------------------------------------------
+#include "../lib/rapidjson/include/rapidjson/document.h"
+#include "../lib/rapidjson/include/rapidjson/writer.h"
+#include "../lib/rapidjson/include/rapidjson/stringbuffer.h"
+// Lib rapidjson ----------------------------------------------------
+
 #define INVALID_SOCKET -1
 
 using namespace std;
+using namespace rapidjson;
 
 /*class Client*/
 class Client{
@@ -21,6 +28,7 @@ public:
 	int initializeClient();
 	int connectClient();
 	int sendMessage();
+	void create();
 
 	void setPort(int port);
 	int getPort();
@@ -43,6 +51,9 @@ public:
   void setRightSimpleQueue(SimpleQueue *simpleQueue);
   SimpleQueue getRightSimpleQueue();
 
+	void setCreated(bool created);
+	bool isCreated();
+
 private:
 
 	int port;
@@ -61,5 +72,5 @@ private:
 	SimpleQueue *leftSimpleQueue;
   SimpleQueue *rightSimpleQueue;
 
-	bool enviado;
+	bool created;
 };

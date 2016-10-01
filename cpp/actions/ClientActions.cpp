@@ -19,14 +19,18 @@ void ClientActions::init(){
   }
 };
 
+/*
+* Escribe aqui tu codigo de como se va a enviar el mensaje,
+* Es decir aqui el nodo genera su propio mensaje y lo envia;
+* Tambien configurar cada cuanto se envia un mensaje o como se envia un nuevo
+* mensaje.
+*/
 void ClientActions::sendingMessage() {
-  /*
-  * Escribe aqui tu codigo de como se va a enviar el mensaje,
-  * Es decir aqui el nodo genera su propio mensaje y lo envia;
-  * Tambien configurar cada cuanto se envia un mensaje o como se envia un nuevo
-  * mensaje.
-  */
-  this->client->sendMessage();
+  if(this->client->isCreated() == false){
+    this->client->create();
+  }else{
+    this->client->sendMessage();
+  }
 }
 
 void ClientActions::run() {
