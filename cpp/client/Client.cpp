@@ -32,7 +32,18 @@ int Client::connectClient(){
 };
 
 int Client::sendMessage(){
-	// if(){}
+
+if(this->leftSimpleQueue->isEmpty() == true){
+	std::cout << "/*  esta vacia */" << std::endl;
+}else{
+	std::cout << "/* no esta vacia */" << std::endl;
+}
+//http://stackoverflow.com/questions/2346806/what-is-a-segmentation-fault
+// Message aux = this->leftSimpleQueue->push();
+// aux.setIp("fdsgsdf");
+//cout << auxgetIp() << endl;
+	// Message auxiliar = this->leftSimpleQueue->push();
+	// cout << auxiliar.getIp() << endl;
 	// 1. Parse a JSON string into DOM.
 	// const char* json = "{\"project\":\"rapidjson\",\"stars\":10}";
 	// Document d;

@@ -4,11 +4,15 @@
 #include "SimpleList.h"
 
 class SimpleQueue {
-  
+
 public:
+
   SimpleQueue();
   SimpleQueue(int capacity);
+
+  /* Pop to add. */
   void pop(Message *info);
+  /* Push to remove. */
   Message push();
   Message top();
   bool isEmpty();
@@ -18,6 +22,7 @@ public:
   virtual ~SimpleQueue();
 
 private:
+
   SimpleList *list;
   int capacity;
 };

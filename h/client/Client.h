@@ -68,6 +68,8 @@ private:
 
 	/* Este es el mensaje que se va a enviar */
 	Message *message;
+	/* Mensaje auxiliar */
+	Message *auxiliarMessage;
 	/* Stack de izquierda a derecha */
 	SimpleQueue *leftSimpleQueue;
   SimpleQueue *rightSimpleQueue;
