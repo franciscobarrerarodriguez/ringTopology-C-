@@ -16,13 +16,13 @@ Node::Node(string ip, int serverPort, int clientPort){
 
 
   /* Creacion de dos Queue...*/
-  this->rightSimpleQueue = new SimpleQueue();
-  this->leftSimpleQueue = new SimpleQueue();
+  this->leftSimpleQueue = new priority_queue<Message*>();
+  this->rightSimpleQueue = new priority_queue<Message*>();
 
   this->server = new Server(this->serverPort);
 
-  this->server->setLeftSimpleQueue(this->leftSimpleQueue);
-  this->server->setRightSimpleQueue(this->rightSimpleQueue);
+  this->server->setLeftPriorityQueue(this->leftSimpleQueue);
+  this->server->setRightPriorityQueue(this->rightSimpleQueue);
 
   this->serverActions = new ServerActions(this->server);
   this->serverThread = new GenericThread(this->serverActions);
@@ -30,8 +30,8 @@ Node::Node(string ip, int serverPort, int clientPort){
 
   this->client = new Client(this->ip, this->clientPort);
 
-  this->client->setLeftSimpleQueue(this->leftSimpleQueue);
-  this->client->setRightSimpleQueue(this->rightSimpleQueue);
+  this->client->setLeftPriorityQueue(this->leftSimpleQueue);
+  this->client->setRightPriorityQueue(this->rightSimpleQueue);
 
   this->clientActions = new ClientActions(this->client);
   this->clientThread = new GenericThread(this->clientActions);

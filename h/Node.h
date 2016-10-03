@@ -1,8 +1,8 @@
 #include "actions/ServerActions.h"
 #include "actions/ClientActions.h"
 #include "thread/GenericThread.h"
-#include "queue/SimpleQueue.h"
-
+//#include "queue/SimpleQueue.h"
+#include <queue>
 #include<iostream>
 #include<string.h>
 
@@ -44,6 +44,6 @@ private:
 	Server *server;
 
 	/* Stack de izquierda a derecha */
-	SimpleQueue *leftSimpleQueue;
-	SimpleQueue *rightSimpleQueue;
+	priority_queue<Message*> *leftSimpleQueue;
+	priority_queue<Message*> *rightSimpleQueue;
 };

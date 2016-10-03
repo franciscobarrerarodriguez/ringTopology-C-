@@ -29,9 +29,7 @@ void ClientActions::sendingMessage() {
   if(this->client->isCreated() == false){
     this->client->create();
   }else{
-    if(this->client->getLeftSimpleQueue().isEmpty() == false){
-      this->client->sendMessage();
-    }
+    this->client->sendMessage();
   }
 }
 

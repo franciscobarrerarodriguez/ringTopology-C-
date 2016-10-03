@@ -1,4 +1,4 @@
-#include "../queue/SimpleQueue.h"
+#include "../message/Message.h"
 
 #include <sys/socket.h>
 #include <netdb.h>
@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <iostream>
+#include <queue>
 
 #define INVALID_SOCKET -1
 
@@ -41,11 +42,11 @@ public:
   void setState(int);
   int getState();
 
-  void setLeftSimpleQueue(SimpleQueue *simpleQueue);
-  SimpleQueue getLeftSimpleQueue();
+  void setLeftPriorityQueue(priority_queue<Message*> *priority_queue);
+  priority_queue<Message*> getLeftPriorityQueue();
 
-  void setRightSimpleQueue(SimpleQueue *simpleQueue);
-  SimpleQueue getRightSimpleQueue();
+  void setRightPriorityQueue(priority_queue<Message*> *priority_queue);
+  priority_queue<Message*> getRightPriorityQueue();
 
 private:
 
@@ -59,6 +60,6 @@ private:
 
   string address;
   /* Stack de izquierda a derecha */
-	SimpleQueue *leftSimpleQueue;
-  SimpleQueue *rightSimpleQueue;
+	priority_queue<Message*> *leftSimpleQueue;
+	priority_queue<Message*> *rightSimpleQueue;
 };

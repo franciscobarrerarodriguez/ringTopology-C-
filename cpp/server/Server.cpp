@@ -75,18 +75,18 @@ int Server::getState(){
   return this->state;
 };
 
-void Server::setLeftSimpleQueue(SimpleQueue *simpleQueue){
-  this->leftSimpleQueue = simpleQueue;
+void Server::setLeftPriorityQueue(priority_queue<Message*> *priority_queue){
+  this->leftSimpleQueue = priority_queue;
 };
 
-SimpleQueue Server::getLeftSimpleQueue(){
+priority_queue<Message*> Server::getLeftPriorityQueue(){
   return *this->leftSimpleQueue;
 };
 
-void Server::setRightSimpleQueue(SimpleQueue *simpleQueue){
-  this->rightSimpleQueue = simpleQueue;
+void Server::setRightPriorityQueue(priority_queue<Message*> *priority_queue){
+  this->rightSimpleQueue = priority_queue;
 };
 
-SimpleQueue Server::getRightSimpleQueue(){
+priority_queue<Message*> Server::getRightPriorityQueue(){
   return *this->rightSimpleQueue;
 };

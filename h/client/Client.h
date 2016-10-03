@@ -1,10 +1,10 @@
-#include "../queue/SimpleQueue.h"
 #include "../message/Message.h"
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <string.h>
 #include <iostream>
+#include <queue>
 
 // Lib rapidjson ----------------------------------------------------
 #include "../lib/rapidjson/include/rapidjson/document.h"
@@ -45,11 +45,11 @@ public:
 	void setMessage(Message *message);
 	Message getMessage();
 
-	void setLeftSimpleQueue(SimpleQueue *simpleQueue);
-  SimpleQueue getLeftSimpleQueue();
+	void setLeftPriorityQueue(priority_queue<Message*> *priority_queue);
+  priority_queue<Message*> getLeftPriorityQueue();
 
-  void setRightSimpleQueue(SimpleQueue *simpleQueue);
-  SimpleQueue getRightSimpleQueue();
+  void setRightPriorityQueue(priority_queue<Message*> *priority_queue);
+  priority_queue<Message*> getRightPriorityQueue();
 
 	void setCreated(bool created);
 	bool isCreated();
@@ -71,8 +71,8 @@ private:
 	/* Mensaje auxiliar */
 	Message *auxiliarMessage;
 	/* Stack de izquierda a derecha */
-	SimpleQueue *leftSimpleQueue;
-  SimpleQueue *rightSimpleQueue;
+	priority_queue<Message*> *leftSimpleQueue;
+	priority_queue<Message*> *rightSimpleQueue;
 
 	bool created;
 };

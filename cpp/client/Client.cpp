@@ -1,5 +1,4 @@
 #include "../../h/client/Client.h"
-// #include <unistd.h>
 
 using namespace std;
 
@@ -32,18 +31,32 @@ int Client::connectClient(){
 };
 
 int Client::sendMessage(){
+	if(!this->leftSimpleQueue->empty()){
+		Message *auxiliarMessage = this->leftSimpleQueue->top();
+		// 1. Parse a JSON string into DOM.
+		const char* json = "{\"ip\":\"this->\"}";
+		Document d;
+    d.Parse(json);
+		// 3. Stringify the DOM
+	 StringBuffer buffer;
+	 Writer<StringBuffer> writer(buffer);
+	 d.Accept(writer);
+	//  Output {"project":"rapidjson","stars":11}
+	 cout << buffer.GetString() << endl;
+	}else{
+		cout << "/* Queue esta vacia */" << endl;
+	}
 
-if(this->leftSimpleQueue->isEmpty() == true){
-	std::cout << "/*  esta vacia */" << std::endl;
-}else{
-	std::cout << "/* no esta vacia */" << std::endl;
-}
-//http://stackoverflow.com/questions/2346806/what-is-a-segmentation-fault
-// Message aux = this->leftSimpleQueue->push();
-// aux.setIp("fdsgsdf");
-//cout << auxgetIp() << endl;
-	// Message auxiliar = this->leftSimpleQueue->push();
-	// cout << auxiliar.getIp() << endl;
+// Hacer el pop cuando se envie el mensaje
+	// p->pop();
+	// cout << aux->getIp() << endl;
+
+	// http://stackoverflow.com/questions/2346806/what-is-a-segmentation-fault
+	// https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C%2B%2B/Librer%C3%ADa_Est%C3%A1ndar_de_Plantillas/Colas
+	// http://www.cplusplus.com/reference/queue/queue/pop/
+	// http://www.cplusplus.com/reference/queue/queue/push/
+
+
 	// 1. Parse a JSON string into DOM.
 	// const char* json = "{\"project\":\"rapidjson\",\"stars\":10}";
 	// Document d;
@@ -75,7 +88,7 @@ if(this->leftSimpleQueue->isEmpty() == true){
 };
 
 void Client::create(){
-	this->leftSimpleQueue->pop(this->message = new Message("hola soy un gordito"));
+	this->leftSimpleQueue->push(this->message = new Message("Hola soy un gordito"));
 	this->created = true;
 }
 
@@ -120,19 +133,19 @@ Message Client::getMessage(){
 	return *this->message;
 };
 
-void Client::setLeftSimpleQueue(SimpleQueue *simpleQueue){
-	this->leftSimpleQueue = simpleQueue;
+void Client::setLeftPriorityQueue(priority_queue<Message*> *priority_queue){
+	this->leftSimpleQueue = priority_queue;
 };
 
-SimpleQueue Client::getLeftSimpleQueue(){
+priority_queue<Message*> Client::getLeftPriorityQueue(){
 	return *this->leftSimpleQueue;
 };
 
-void Client::setRightSimpleQueue(SimpleQueue *simpleQueue){
-	this->rightSimpleQueue = simpleQueue;
+void Client::setRightPriorityQueue(priority_queue<Message*> *priority_queue){
+	this->rightSimpleQueue = priority_queue;
 };
 
-SimpleQueue Client::getRightSimpleQueue(){
+priority_queue<Message*> Client::getRightPriorityQueue(){
 	return *this->rightSimpleQueue;
 };
 

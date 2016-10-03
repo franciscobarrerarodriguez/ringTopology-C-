@@ -10,7 +10,7 @@ ServerActions::ServerActions(Server *server){
 void ServerActions::init() {
   if(this->server->initializeServer() != INVALID_SOCKET){
     if(this->server->listenClient() != INVALID_SOCKET){
-        cout << "/* Esperando por una conexion . . . */" << endl;
+      cout << "/* Esperando por una conexion . . . */" << endl;
       if(this->server->acceptClient() != INVALID_SOCKET){
         cout << "/* Cliente aceptado. */" << endl;
         this->server->setState(1);
