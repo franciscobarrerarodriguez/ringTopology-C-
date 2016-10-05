@@ -11,6 +11,7 @@ struct Message{
 
 public:
 
+	Message();
 	Message(string);
 	string getIp();
 	void setIp(string ip);

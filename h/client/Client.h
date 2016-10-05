@@ -31,6 +31,8 @@ public:
 	int sendMessage();
 	void create();
 
+	int msleep(unsigned long);
+
 	void setPort(int port);
 	int getPort();
 
@@ -64,7 +66,7 @@ private:
 	int state;
 
 	string ip;
-	
+
 	struct sockaddr_in server_address;
 
 	/* Este es el mensaje que se va a enviar */

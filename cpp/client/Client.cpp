@@ -50,6 +50,8 @@ int Client::sendMessage(){
 		// Cuando se envia el mensaje es removido de Queue.
 		this->leftSimpleQueue->pop();
 		answer = 0;
+		/*Aqui wait */
+		this->msleep(5000);
 	}
 	return answer;
 };
@@ -60,6 +62,17 @@ void Client::create(){
 	cin >> algo;
 	this->leftSimpleQueue->push(this->message = new Message(algo));
 	this->created = true;
+}
+
+int Client::msleep(unsigned long milisec){
+	struct timespec req={0};
+	time_t sec=(int)(milisec/1000);
+	milisec=milisec-(sec*1000);
+	req.tv_sec=sec;
+	req.tv_nsec=milisec*1000000L;
+	while(nanosleep(&req,&req)==-1)
+	continue;
+	return 1;
 }
 
 /* Getters & Setters */

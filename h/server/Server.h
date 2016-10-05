@@ -10,9 +10,16 @@
 #include <iostream>
 #include <queue>
 
+// Lib rapidjson ----------------------------------------------------
+#include "../lib/rapidjson/include/rapidjson/document.h"
+#include "../lib/rapidjson/include/rapidjson/writer.h"
+#include "../lib/rapidjson/include/rapidjson/stringbuffer.h"
+// Lib rapidjson ----------------------------------------------------
+
 #define INVALID_SOCKET -1
 
 using namespace std;
+using namespace rapidjson;
 
 class Server{
 

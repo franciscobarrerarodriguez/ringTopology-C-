@@ -35,7 +35,7 @@ void ClientActions::sendingMessage() {
         cout << "/* El mensaje no fue enviado. */" << endl;
       }else{
         /* Solo para pruebas borrar cuando se termine */
-        cout << "/* Mensaje envidao. */" << endl;
+        cout << "/* Mensaje envidado. */" << endl;
       }
     }
   }
