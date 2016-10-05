@@ -29,7 +29,15 @@ void ClientActions::sendingMessage() {
   if(this->client->isCreated() == false){
     this->client->create();
   }else{
-    this->client->sendMessage();
+    if(!this->client->getLeftPriorityQueue().empty()){
+      int sent = this->client->sendMessage();
+      if(sent == INVALID_SOCKET){
+        cout << "/* El mensaje no fue enviado. */" << endl;
+      }else{
+        /* Solo para pruebas borrar cuando se termine */
+        cout << "/* Mensaje envidao. */" << endl;
+      }
+    }
   }
 }
 

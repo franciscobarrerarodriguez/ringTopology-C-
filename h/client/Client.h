@@ -4,6 +4,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <iostream>
+#include <sstream>
 #include <queue>
 
 // Lib rapidjson ----------------------------------------------------
@@ -63,7 +64,7 @@ private:
 	int state;
 
 	string ip;
-
+	
 	struct sockaddr_in server_address;
 
 	/* Este es el mensaje que se va a enviar */
@@ -75,4 +76,6 @@ private:
 	priority_queue<Message*> *rightSimpleQueue;
 
 	bool created;
+
+	stringstream stringStream;
 };

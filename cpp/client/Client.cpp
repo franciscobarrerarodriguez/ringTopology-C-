@@ -30,65 +30,35 @@ int Client::connectClient(){
 	}
 };
 
+/* http://stackoverflow.com/questions/2346806/what-is-a-segmentation-fault
+https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C%2B%2B/Librer%C3%ADa_Est%C3%A1ndar_de_Plantillas/Colas
+http://www.cplusplus.com/reference/queue/queue/pop/
+http://www.cplusplus.com/reference/queue/queue/push/ */
 int Client::sendMessage(){
-	if(!this->leftSimpleQueue->empty()){
-		Message *auxiliarMessage = this->leftSimpleQueue->top();
-		// 1. Parse a JSON string into DOM.
-		const char* json = "{\"ip\":\"this->\"}";
-		Document d;
-    d.Parse(json);
-		// 3. Stringify the DOM
-	 StringBuffer buffer;
-	 Writer<StringBuffer> writer(buffer);
-	 d.Accept(writer);
-	//  Output {"project":"rapidjson","stars":11}
-	 cout << buffer.GetString() << endl;
-	}else{
-		cout << "/* Queue esta vacia */" << endl;
-	}
-
-// Hacer el pop cuando se envie el mensaje
-	// p->pop();
-	// cout << aux->getIp() << endl;
-
-	// http://stackoverflow.com/questions/2346806/what-is-a-segmentation-fault
-	// https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C%2B%2B/Librer%C3%ADa_Est%C3%A1ndar_de_Plantillas/Colas
-	// http://www.cplusplus.com/reference/queue/queue/pop/
-	// http://www.cplusplus.com/reference/queue/queue/push/
-
-
+	int answer = 0;
+	Message *auxiliarMessage = this->leftSimpleQueue->top();
+	// PrepareJson
+	this->stringStream.clear() ;
+	this->stringStream<< "{\"ip\":\""<< auxiliarMessage->getIp() <<"\",\"stars\":10}";
+	string auxiliarstring = this->stringStream.str();
 	// 1. Parse a JSON string into DOM.
-	// const char* json = "{\"project\":\"rapidjson\",\"stars\":10}";
-	// Document d;
-	// d.Parse(json);
-	// // 2. Modify it by DOM.
-	// Value& s = d["stars"];
-	// s.SetInt(s.GetInt() + 1);
-	// // 3. Stringify the DOM
-	// StringBuffer buffer;
-	// Writer<StringBuffer> writer(buffer);
-	// d.Accept(writer);
-	// // Output {"project":"rapidjson","stars":11}
-	// cout << buffer.GetString() << endl;
-	// return 0;
-	// int s = 0;
-	// if(this->created == false){
-	// 	const char *msg = NULL;
-	// 	string message = "Hola maldito computador";
-	// 	msg = message.c_str();
-	// 	int s = send(this->socket_server, msg, strlen(msg), 0);
-	// 	if(s == INVALID_SOCKET){
-	// 		return INVALID_SOCKET;
-	// 	}else{
-	// 		this->created = true;
-	// 		return s;
-	// 	}
-	// }
-	return 1;
+	const char *json = auxiliarstring.c_str();
+	answer = send(this->socket_server, json, strlen(json), 0);
+	if(answer == INVALID_SOCKET){
+		answer = INVALID_SOCKET;
+	}else{
+		// Cuando se envia el mensaje es removido de Queue.
+		this->leftSimpleQueue->pop();
+		answer = 0;
+	}
+	return answer;
 };
 
 void Client::create(){
-	this->leftSimpleQueue->push(this->message = new Message("Hola soy un gordito"));
+	cout << "/* Escriba un mensaje : */" << endl;
+	string algo;
+	cin >> algo;
+	this->leftSimpleQueue->push(this->message = new Message(algo));
 	this->created = true;
 }
 
