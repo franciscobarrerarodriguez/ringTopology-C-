@@ -31,7 +31,7 @@ public:
 	int sendMessage();
 	void create();
 
-	int msleep(unsigned long);
+	void msleep(unsigned long);
 
 	void setPort(int port);
 	int getPort();
@@ -48,11 +48,11 @@ public:
 	void setMessage(Message *message);
 	Message getMessage();
 
-	void setLeftPriorityQueue(priority_queue<Message*> *priority_queue);
-  priority_queue<Message*> getLeftPriorityQueue();
+	void setLeftPriorityQueue(priority_queue<string> *priority_queue);
+	priority_queue<string> getLeftPriorityQueue();
 
-  void setRightPriorityQueue(priority_queue<Message*> *priority_queue);
-  priority_queue<Message*> getRightPriorityQueue();
+	void setRightPriorityQueue(priority_queue<string> *priority_queue);
+	priority_queue<string> getRightPriorityQueue();
 
 	void setCreated(bool created);
 	bool isCreated();
@@ -74,8 +74,8 @@ private:
 	/* Mensaje auxiliar */
 	Message *auxiliarMessage;
 	/* Stack de izquierda a derecha */
-	priority_queue<Message*> *leftSimpleQueue;
-	priority_queue<Message*> *rightSimpleQueue;
+	priority_queue<string> *leftSimpleQueue;
+	priority_queue<string> *rightSimpleQueue;
 
 	bool created;
 

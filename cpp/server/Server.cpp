@@ -47,16 +47,13 @@ int Server::acceptClient(){
 
 int Server::receiveMessage(){
   char json[10000] = "";
-  int recieve = recv(this->socket_conn, json, sizeof(json), 0);
-  if(recieve != INVALID_SOCKET){
-    if(json[0]){
-      // 1. Parse a JSON
-      Document document;
-      document.Parse(json);
-      this->leftSimpleQueue->push(new Message(document["ip"].GetString()));
-    }
+  if((recv(this->socket_conn, json, sizeof(json), 0)) != INVALID_SOCKET){
+    this->leftSimpleQueue->push(json);
+    cout << json << endl;
+    return 0;
+  }else{
+    return INVALID_SOCKET;
   }
-  return recieve;
 };
 
 /* Getters & Setters */
@@ -76,18 +73,18 @@ int Server::getState(){
   return this->state;
 };
 
-void Server::setLeftPriorityQueue(priority_queue<Message*> *priority_queue){
+void Server::setLeftPriorityQueue(priority_queue<string> *priority_queue){
   this->leftSimpleQueue = priority_queue;
 };
 
-priority_queue<Message*> Server::getLeftPriorityQueue(){
+priority_queue<string> Server::getLeftPriorityQueue(){
   return *this->leftSimpleQueue;
 };
 
-void Server::setRightPriorityQueue(priority_queue<Message*> *priority_queue){
+void Server::setRightPriorityQueue(priority_queue<string> *priority_queue){
   this->rightSimpleQueue = priority_queue;
 };
 
-priority_queue<Message*> Server::getRightPriorityQueue(){
+priority_queue<string> Server::getRightPriorityQueue(){
   return *this->rightSimpleQueue;
 };

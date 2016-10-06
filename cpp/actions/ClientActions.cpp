@@ -5,51 +5,56 @@ ClientActions::ClientActions(Client *client){
   this->state = true;
 };
 
-void ClientActions::init(){
+void ClientActions::initClient(){
   if(this->client->initializeClient() != INVALID_SOCKET){
-    cout << "/* Buscando conexion . . .  */" << endl;
-    if(this->client->connectClient() != INVALID_SOCKET){
-      cout << "/* Cliente conectado. */" << endl;
-      this->client->setState(1);
-    }else{
-      cout << "/* Error conectando. */" << endl;
-    }
+    cout << "/* Cliente iniciado . . . */" << endl;
+    this->client->setState(1);
   }else{
     cout << "/* Cliente no iniciado. */" << endl;
   }
 };
 
-/*
-* Escribe aqui tu codigo de como se va a enviar el mensaje,
-* Es decir aqui el nodo genera su propio mensaje y lo envia;
-* Tambien configurar cada cuanto se envia un mensaje o como se envia un nuevo
-* mensaje.
-*/
-void ClientActions::sendingMessage() {
+void ClientActions::connectClient(){
+  if(this->client->connectClient() != INVALID_SOCKET){
+    cout << "/* Cliente conectado . . . */" << endl;
+    this->client->setState(2);
+  }else{
+    cout << "/* Error conectando. */" << endl;
+  }
+};
+
+void ClientActions::ownMessage(){
   if(this->client->isCreated() == false){
     this->client->create();
-  }else{
-    if(!this->client->getLeftPriorityQueue().empty()){
-      int sent = this->client->sendMessage();
-      if(sent == INVALID_SOCKET){
-        cout << "/* El mensaje no fue enviado. */" << endl;
-      }else{
-        /* Solo para pruebas borrar cuando se termine */
-        cout << "/* Mensaje envidado. */" << endl;
-      }
+    this->client->setState(3);
+  }
+};
+
+void ClientActions::sendMessages() {
+  if(!this->client->getLeftPriorityQueue().empty()){
+    if(this->client->sendMessage() != INVALID_SOCKET){
+      cout << "/* Mensaje enviado. */" << endl;
+    }else{
+      cout << "/* Mensaje no enviado */" << endl;
     }
   }
-}
+};
 
 void ClientActions::run() {
   while(this->state == true){
     switch (this->client->getState()) {
       case 0:
-      this->init();
+      this->initClient();
       break;
       case 1:
-      this->sendingMessage();
+      this->connectClient();
+      break;
+      case 2:
+      this->ownMessage();
+      break;
+      case 3:
+      this->sendMessages();
       break;
     }
   }
-}
+};

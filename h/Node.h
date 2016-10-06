@@ -15,17 +15,14 @@ public:
 	Node(string, int serverPort, int clientPort);
 	~Node();
 
-	//void threadThree();
-	//void threadFour();
-	int getServerPort();
 	void setServerPort(int);
-	int getClientPort();
+	int getServerPort();
+
 	void setClientPort(int);
-	string getIp();
+	int getClientPort();
+
 	void setIp(string ip);
-	// void setClient(Client *client);
-	// Client getClient();
-	//void show();
+	string getIp();
 
 private:
 
@@ -44,6 +41,6 @@ private:
 	Server *server;
 
 	/* Stack de izquierda a derecha */
-	priority_queue<Message*> *leftSimpleQueue;
-	priority_queue<Message*> *rightSimpleQueue;
+	priority_queue<string> *leftSimpleQueue;
+	priority_queue<string> *rightSimpleQueue;
 };

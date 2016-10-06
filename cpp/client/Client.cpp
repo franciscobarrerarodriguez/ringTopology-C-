@@ -12,7 +12,7 @@ Client::Client(string ip, int port){
 
 int Client::initializeClient(){
 	if (this->socket_server == INVALID_SOCKET){
-		return -1;
+		return INVALID_SOCKET;
 	} else{
 		this->server_address.sin_family = AF_INET;
 		this->server_address.sin_addr.s_addr = inet_addr(this->getIp().c_str());
@@ -24,7 +24,7 @@ int Client::initializeClient(){
 
 int Client::connectClient(){
 	if (connect(this->socket_server, (struct sockaddr *)&this->server_address, sizeof(this->server_address)) == INVALID_SOCKET){
-		return -1;
+		return INVALID_SOCKET;
 	}else{
 		return 0;
 	}
@@ -35,36 +35,28 @@ https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C%2B%2B/Librer%C3%ADa_Est%C3%
 http://www.cplusplus.com/reference/queue/queue/pop/
 http://www.cplusplus.com/reference/queue/queue/push/ */
 int Client::sendMessage(){
-	int answer = 0;
-	Message *auxiliarMessage = this->leftSimpleQueue->top();
-	// PrepareJson
+	/*Aqui wait */
+	this->msleep(5000);
+	/* PrepareJson */
 	this->stringStream.clear() ;
-	this->stringStream<< "{\"ip\":\""<< auxiliarMessage->getIp() <<"\",\"stars\":10}";
+	this->stringStream << this->leftSimpleQueue->top();
 	string auxiliarstring = this->stringStream.str();
-	// 1. Parse a JSON string into DOM.
 	const char *json = auxiliarstring.c_str();
-	answer = send(this->socket_server, json, strlen(json), 0);
-	if(answer == INVALID_SOCKET){
-		answer = INVALID_SOCKET;
-	}else{
-		// Cuando se envia el mensaje es removido de Queue.
+	if((send(this->socket_server, json, strlen(json), 0)) != INVALID_SOCKET){
 		this->leftSimpleQueue->pop();
-		answer = 0;
-		/*Aqui wait */
-		this->msleep(5000);
+		return 0;
+	}else{
+		return INVALID_SOCKET;
 	}
-	return answer;
 };
 
 void Client::create(){
-	cout << "/* Escriba un mensaje : */" << endl;
-	string algo;
-	cin >> algo;
-	this->leftSimpleQueue->push(this->message = new Message(algo));
+	string own = "{\"ip\":\"192.168.43.234\",\"stars\":10}";
+	this->leftSimpleQueue->push(own);
 	this->created = true;
 }
 
-int Client::msleep(unsigned long milisec){
+void Client::msleep(unsigned long milisec){
 	struct timespec req={0};
 	time_t sec=(int)(milisec/1000);
 	milisec=milisec-(sec*1000);
@@ -72,8 +64,7 @@ int Client::msleep(unsigned long milisec){
 	req.tv_nsec=milisec*1000000L;
 	while(nanosleep(&req,&req)==-1)
 	continue;
-	return 1;
-}
+};
 
 /* Getters & Setters */
 void Client::setPort(int port){
@@ -116,19 +107,19 @@ Message Client::getMessage(){
 	return *this->message;
 };
 
-void Client::setLeftPriorityQueue(priority_queue<Message*> *priority_queue){
+void Client::setLeftPriorityQueue(priority_queue<string> *priority_queue){
 	this->leftSimpleQueue = priority_queue;
 };
 
-priority_queue<Message*> Client::getLeftPriorityQueue(){
+priority_queue<string> Client::getLeftPriorityQueue(){
 	return *this->leftSimpleQueue;
 };
 
-void Client::setRightPriorityQueue(priority_queue<Message*> *priority_queue){
+void Client::setRightPriorityQueue(priority_queue<string> *priority_queue){
 	this->rightSimpleQueue = priority_queue;
 };
 
-priority_queue<Message*> Client::getRightPriorityQueue(){
+priority_queue<string> Client::getRightPriorityQueue(){
 	return *this->rightSimpleQueue;
 };
 

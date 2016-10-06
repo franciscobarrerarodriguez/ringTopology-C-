@@ -13,8 +13,10 @@ public:
 
   void run();
 
-  void init();
-  void waitingForAMessage();
+  void initServer();
+  void listenClient();
+  void acceptClient();
+  void waitForAMessage();
 
   void setSocket_conn();
   int getSocket_conn();

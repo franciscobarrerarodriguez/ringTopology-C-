@@ -1,11 +1,4 @@
 #include "../h/Node.h"
-//#include "ot/io/DataOutputStream.h"
-//#include "ot/io/DataInputStream.h"
-// #include <string.h>
-// #include "string.h"
-//#include <pthread.h>
-//#include <sys/types.h>
-//#include <sys/socket.h>
 
 using namespace std;
 
@@ -14,10 +7,10 @@ Node::Node(string ip, int serverPort, int clientPort){
   this->serverPort = serverPort;
   this->clientPort = clientPort;
 
-
-  /* Creacion de dos Queue...*/
-  this->leftSimpleQueue = new priority_queue<Message*>();
-  this->rightSimpleQueue = new priority_queue<Message*>();
+  /* Creacion de dos Queue, una en sentido izquierda a derecha,
+  la otra de derecha izquierda*/
+  this->leftSimpleQueue = new priority_queue<string>();
+  this->rightSimpleQueue = new priority_queue<string>();
 
   this->server = new Server(this->serverPort);
 
@@ -45,6 +38,7 @@ Node::Node(string ip, int serverPort, int clientPort){
 //void Node::threadThree(){}
 //void Node::threadFour(){}
 
+/* Getters & Setters */
 void Node::setServerPort(int port){
   this->serverPort = port;
 };

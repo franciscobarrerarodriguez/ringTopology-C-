@@ -8,11 +8,13 @@ using namespace std;
 class ClientActions:public IRunnable{
 
 public:
-  
+
   ClientActions(Client *);
 
-  void init();
-  void sendingMessage();
+  void initClient();
+  void connectClient();
+  void ownMessage();
+  void sendMessages();
 
   void run();
 
