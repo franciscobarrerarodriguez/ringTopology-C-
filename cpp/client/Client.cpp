@@ -50,8 +50,8 @@ int Client::sendMessage(){
 	}
 };
 
-void Client::create(){
-	string own = "{\"ip\":\"192.168.43.234\",\"stars\":10}";
+void Client::create(string own){
+	//string own = "{\"ip\":\"192.168.43.234\",\"stars\":10}";
 	this->leftSimpleQueue->push(own);
 	this->created = true;
 }
@@ -97,14 +97,6 @@ void Client::setState(int state){
 
 int Client::getState(){
 	return this->state;
-};
-
-void Client::setMessage(Message *message){
-	this->message = message;
-};
-
-Message Client::getMessage(){
-	return *this->message;
 };
 
 void Client::setLeftPriorityQueue(priority_queue<string> *priority_queue){

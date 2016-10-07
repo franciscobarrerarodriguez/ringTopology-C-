@@ -1,4 +1,5 @@
-#include "../message/Message.h"
+#ifndef CLIENT_H_
+#define CLIENT_H_
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -29,7 +30,7 @@ public:
 	int initializeClient();
 	int connectClient();
 	int sendMessage();
-	void create();
+	void create(string);
 
 	void msleep(unsigned long);
 
@@ -44,9 +45,6 @@ public:
 
 	void setState(int state);
 	int getState();
-
-	void setMessage(Message *message);
-	Message getMessage();
 
 	void setLeftPriorityQueue(priority_queue<string> *priority_queue);
 	priority_queue<string> getLeftPriorityQueue();
@@ -70,9 +68,7 @@ private:
 	struct sockaddr_in server_address;
 
 	/* Este es el mensaje que se va a enviar */
-	Message *message;
-	/* Mensaje auxiliar */
-	Message *auxiliarMessage;
+
 	/* Stack de izquierda a derecha */
 	priority_queue<string> *leftSimpleQueue;
 	priority_queue<string> *rightSimpleQueue;
@@ -81,3 +77,4 @@ private:
 
 	stringstream stringStream;
 };
+#endif /* CLIENT_H_ */

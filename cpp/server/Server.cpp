@@ -48,7 +48,7 @@ int Server::acceptClient(){
 int Server::receiveMessage(){
   char json[10000] = "";
   if((recv(this->socket_conn, json, sizeof(json), 0)) != INVALID_SOCKET){
-    this->leftSimpleQueue->push(json);
+    //this->leftSimpleQueue->push(json);
     cout << json << endl;
     return 0;
   }else{

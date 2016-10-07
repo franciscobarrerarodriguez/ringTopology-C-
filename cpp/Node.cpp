@@ -30,6 +30,10 @@ Node::Node(string ip, int serverPort, int clientPort){
   this->clientThread = new GenericThread(this->clientActions);
   this->clientThread->createThread();
 
+  this->messageActions = new MessageActions(this->client);
+  this->messageThread = new GenericThread(this->messageActions);
+  this->messageThread->createThread();
+  
   /* No permite que el programa se termine de ejecutar*/
   while(true);
 }

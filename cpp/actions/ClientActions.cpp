@@ -23,13 +23,6 @@ void ClientActions::connectClient(){
   }
 };
 
-void ClientActions::ownMessage(){
-  if(this->client->isCreated() == false){
-    this->client->create();
-    this->client->setState(3);
-  }
-};
-
 void ClientActions::sendMessages() {
   if(!this->client->getLeftPriorityQueue().empty()){
     if(this->client->sendMessage() != INVALID_SOCKET){
@@ -50,9 +43,6 @@ void ClientActions::run() {
       this->connectClient();
       break;
       case 2:
-      this->ownMessage();
-      break;
-      case 3:
       this->sendMessages();
       break;
     }
