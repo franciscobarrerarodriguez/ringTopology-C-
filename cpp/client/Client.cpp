@@ -35,12 +35,11 @@ https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C%2B%2B/Librer%C3%ADa_Est%C3%
 http://www.cplusplus.com/reference/queue/queue/pop/
 http://www.cplusplus.com/reference/queue/queue/push/ */
 int Client::sendMessage(){
-	/*Aqui wait */
-	this->msleep(5000);
 	/* PrepareJson */
-	this->stringStream.clear() ;
+this->stringStream.str("");
 	this->stringStream << this->leftSimpleQueue->top();
 	string auxiliarstring = this->stringStream.str();
+	cout << "auxiliarstring: "<< auxiliarstring << endl;
 	const char *json = auxiliarstring.c_str();
 	if((send(this->socket_server, json, strlen(json), 0)) != INVALID_SOCKET){
 		this->leftSimpleQueue->pop();

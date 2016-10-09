@@ -24,12 +24,16 @@ void ClientActions::connectClient(){
 };
 
 void ClientActions::sendMessages() {
-  if(!this->client->getLeftPriorityQueue().empty()){
+  /*Aqui wait */
+  this->client->msleep(5000);
+  if(this->client->getLeftPriorityQueue().empty() == false){
     if(this->client->sendMessage() != INVALID_SOCKET){
       cout << "/* Mensaje enviado. */" << endl;
     }else{
       cout << "/* Mensaje no enviado */" << endl;
     }
+  }else{
+    cout << "/* Queue esta vacia. */" << endl;
   }
 };
 

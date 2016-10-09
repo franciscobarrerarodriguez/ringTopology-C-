@@ -1,5 +1,3 @@
-
-
 #include <sys/socket.h>
 #include <netdb.h>
 #include <net/if.h>
@@ -7,6 +5,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include <sstream>
 #include <iostream>
 #include <queue>
 
@@ -69,4 +68,7 @@ private:
   /* Stack de izquierda a derecha */
 	priority_queue<string> *leftSimpleQueue;
 	priority_queue<string> *rightSimpleQueue;
+
+  /* String stream */
+  stringstream stringStream;
 };
