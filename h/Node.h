@@ -44,6 +44,6 @@ private:
 	Server *server;
 
 	/* Stack de izquierda a derecha */
-	priority_queue<string> *leftSimpleQueue;
-	priority_queue<string> *rightSimpleQueue;
+	queue<string> *leftSimpleQueue;
+	queue<string> *rightSimpleQueue;
 };

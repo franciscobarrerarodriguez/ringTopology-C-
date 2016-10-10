@@ -9,13 +9,13 @@ Node::Node(string ip, int serverPort, int clientPort){
 
   /* Creacion de dos Queue, una en sentido izquierda a derecha,
   la otra de derecha izquierda*/
-  this->leftSimpleQueue = new priority_queue<string>();
-  this->rightSimpleQueue = new priority_queue<string>();
+  this->leftSimpleQueue = new queue<string>();
+  this->rightSimpleQueue = new queue<string>();
 
   this->server = new Server(this->serverPort);
 
-  this->server->setLeftPriorityQueue(this->leftSimpleQueue);
-  this->server->setRightPriorityQueue(this->rightSimpleQueue);
+  this->server->setLeftQueue(this->leftSimpleQueue);
+  this->server->setRightQueue(this->rightSimpleQueue);
 
   this->serverActions = new ServerActions(this->server);
   this->serverThread = new GenericThread(this->serverActions);
@@ -23,8 +23,8 @@ Node::Node(string ip, int serverPort, int clientPort){
 
   this->client = new Client(this->ip, this->clientPort);
 
-  this->client->setLeftPriorityQueue(this->leftSimpleQueue);
-  this->client->setRightPriorityQueue(this->rightSimpleQueue);
+  this->client->setLeftQueue(this->leftSimpleQueue);
+  this->client->setRightQueue(this->rightSimpleQueue);
 
   this->clientActions = new ClientActions(this->client);
   this->clientThread = new GenericThread(this->clientActions);
@@ -33,7 +33,7 @@ Node::Node(string ip, int serverPort, int clientPort){
   this->messageActions = new MessageActions(this->client);
   this->messageThread = new GenericThread(this->messageActions);
   this->messageThread->createThread();
-  
+
   /* No permite que el programa se termine de ejecutar*/
   while(true);
 }

@@ -26,7 +26,7 @@ void ClientActions::connectClient(){
 void ClientActions::sendMessages() {
   /*Aqui wait */
   this->client->msleep(5000);
-  if(this->client->getLeftPriorityQueue().empty() == false){
+  if(this->client->getLeftQueue().empty() == false){
     if(this->client->sendMessage() != INVALID_SOCKET){
       cout << "/* Mensaje enviado. */" << endl;
     }else{

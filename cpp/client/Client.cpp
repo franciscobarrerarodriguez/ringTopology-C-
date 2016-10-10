@@ -36,12 +36,12 @@ http://www.cplusplus.com/reference/queue/queue/pop/
 http://www.cplusplus.com/reference/queue/queue/push/ */
 int Client::sendMessage(){
 	/* PrepareJson */
-this->stringStream.str("");
-	this->stringStream << this->leftSimpleQueue->top();
+	this->stringStream.str("");
+	this->stringStream << this->leftSimpleQueue->front();
 	string auxiliarstring = this->stringStream.str();
-	cout << "auxiliarstring: "<< auxiliarstring << endl;
 	const char *json = auxiliarstring.c_str();
 	if((send(this->socket_server, json, strlen(json), 0)) != INVALID_SOCKET){
+		cout << "auxiliarstring: "<< auxiliarstring << endl;
 		this->leftSimpleQueue->pop();
 		return 0;
 	}else{
@@ -98,19 +98,19 @@ int Client::getState(){
 	return this->state;
 };
 
-void Client::setLeftPriorityQueue(priority_queue<string> *priority_queue){
-	this->leftSimpleQueue = priority_queue;
+void Client::setLeftQueue(queue<string> *queue){
+	this->leftSimpleQueue = queue;
 };
 
-priority_queue<string> Client::getLeftPriorityQueue(){
+queue<string> Client::getLeftQueue(){
 	return *this->leftSimpleQueue;
 };
 
-void Client::setRightPriorityQueue(priority_queue<string> *priority_queue){
-	this->rightSimpleQueue = priority_queue;
+void Client::setRightQueue(queue<string> *queue){
+	this->rightSimpleQueue = queue;
 };
 
-priority_queue<string> Client::getRightPriorityQueue(){
+queue<string> Client::getRightQueue(){
 	return *this->rightSimpleQueue;
 };
 

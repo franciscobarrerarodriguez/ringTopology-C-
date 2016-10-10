@@ -52,7 +52,7 @@ int Server::receiveMessage(){
     this->stringStream << json;
     string auxiliarstring = this->stringStream.str();
     this->leftSimpleQueue->push(auxiliarstring);
-    //cout << "Este es el mensaje que llego: " << this->leftSimpleQueue->top() << endl;
+    cout << "Este es el mensaje que llego: " << this->leftSimpleQueue->front() << endl;
     return 0;
   }else{
     return INVALID_SOCKET;
@@ -76,18 +76,18 @@ int Server::getState(){
   return this->state;
 };
 
-void Server::setLeftPriorityQueue(priority_queue<string> *priority_queue){
-  this->leftSimpleQueue = priority_queue;
+void Server::setLeftQueue(queue<string> *queue){
+  this->leftSimpleQueue = queue;
 };
 
-priority_queue<string> Server::getLeftPriorityQueue(){
+queue<string> Server::getLeftQueue(){
   return *this->leftSimpleQueue;
 };
 
-void Server::setRightPriorityQueue(priority_queue<string> *priority_queue){
-  this->rightSimpleQueue = priority_queue;
+void Server::setRightQueue(queue<string> *queue){
+  this->rightSimpleQueue = queue;
 };
 
-priority_queue<string> Server::getRightPriorityQueue(){
+queue<string> Server::getRightQueue(){
   return *this->rightSimpleQueue;
 };

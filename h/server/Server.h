@@ -48,11 +48,11 @@ public:
   void setState(int);
   int getState();
 
-  void setLeftPriorityQueue(priority_queue<string> *priority_queue);
-  priority_queue<string> getLeftPriorityQueue();
+  void setLeftQueue(queue<string> *queue);
+  queue<string> getLeftQueue();
 
-  void setRightPriorityQueue(priority_queue<string> *priority_queue);
-  priority_queue<string> getRightPriorityQueue();
+  void setRightQueue(queue<string> *queue);
+  queue<string> getRightQueue();
 
 private:
 
@@ -66,8 +66,8 @@ private:
 
   string address;
   /* Stack de izquierda a derecha */
-	priority_queue<string> *leftSimpleQueue;
-	priority_queue<string> *rightSimpleQueue;
+  queue<string> *leftSimpleQueue;
+  queue<string> *rightSimpleQueue;
 
   /* String stream */
   stringstream stringStream;

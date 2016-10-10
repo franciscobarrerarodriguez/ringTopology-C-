@@ -46,11 +46,11 @@ public:
 	void setState(int state);
 	int getState();
 
-	void setLeftPriorityQueue(priority_queue<string> *priority_queue);
-	priority_queue<string> getLeftPriorityQueue();
+	void setLeftQueue(queue<string> *queue);
+	queue<string> getLeftQueue();
 
-	void setRightPriorityQueue(priority_queue<string> *priority_queue);
-	priority_queue<string> getRightPriorityQueue();
+	void setRightQueue(queue<string> *queue);
+	queue<string> getRightQueue();
 
 	void setCreated(bool created);
 	bool isCreated();
@@ -70,8 +70,8 @@ private:
 	/* Este es el mensaje que se va a enviar */
 
 	/* Stack de izquierda a derecha */
-	priority_queue<string> *leftSimpleQueue;
-	priority_queue<string> *rightSimpleQueue;
+	queue<string> *leftSimpleQueue;
+	queue<string> *rightSimpleQueue;
 
 	bool created;
 
