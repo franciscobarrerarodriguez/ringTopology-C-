@@ -9,9 +9,11 @@ MessageActions::MessageActions(Client *client){
 
 void MessageActions::run(){
   while (this->state == true) {
-    cout << "/* Escriba un mensaje */" << endl;
-    string message;
-    cin >> message;
-    this->client->create(message);
+    cout << "/* ¿Enviar un mensaje? (y)*/" << endl;
+    string option;
+    cin >> option;
+    if(option == "y"){
+      this->client->create();
+    }
   }
 };

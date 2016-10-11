@@ -28,12 +28,12 @@ void ClientActions::sendMessages() {
   this->client->msleep(5000);
   if(this->client->getLeftQueue().empty() == false){
     if(this->client->sendMessage() != INVALID_SOCKET){
-      cout << "/* Mensaje enviado. */" << endl;
+      //cout << "/* Mensaje enviado. */" << endl;
     }else{
       cout << "/* Mensaje no enviado */" << endl;
     }
   }else{
-    cout << "/* Queue esta vacia. */" << endl;
+    //cout << "/* Queue esta vacia. */" << endl;
   }
 };
 

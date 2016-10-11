@@ -1,7 +1,7 @@
 
 #! /bin/bash
 #----Attributes
-user=francisco
+user=maria
 #----Preparation
 # First, a public key is created and copied to all in the network
 ssh-keygen -b 4096 -t rsa

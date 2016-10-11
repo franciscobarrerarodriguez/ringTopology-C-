@@ -41,7 +41,7 @@ int Client::sendMessage(){
 	string auxiliarstring = this->stringStream.str();
 	const char *json = auxiliarstring.c_str();
 	if((send(this->socket_server, json, strlen(json), 0)) != INVALID_SOCKET){
-		cout << "auxiliarstring: "<< auxiliarstring << endl;
+	//	cout << "auxiliarstring: "<< auxiliarstring << endl;
 		this->leftSimpleQueue->pop();
 		return 0;
 	}else{
@@ -49,8 +49,8 @@ int Client::sendMessage(){
 	}
 };
 
-void Client::create(string own){
-	//string own = "{\"ip\":\"192.168.43.234\",\"stars\":10}";
+void Client::create(){
+	string own = "{\"ip\":\"192.168.43.234\",\"stars\":10}";
 	this->leftSimpleQueue->push(own);
 	this->created = true;
 }

@@ -30,7 +30,7 @@ public:
 	int initializeClient();
 	int connectClient();
 	int sendMessage();
-	void create(string);
+	void create();
 
 	void msleep(unsigned long);
 
