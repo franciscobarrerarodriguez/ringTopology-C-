@@ -1,10 +1,13 @@
+#ifndef GENERIC_THREAD_H_
+#define GENERIC_THREAD_H_
+
 #include <iostream>
 #include <pthread.h>
 #include "IRunnable.h"
 
 using namespace std;
 
-class GenericThread{
+class GenericThread {
 
 public:
 
@@ -17,3 +20,4 @@ public:
   }
   GenericThread(IRunnable *);
 };
+#endif /* GENERIC_THREAD_H_ */

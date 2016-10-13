@@ -41,7 +41,7 @@ int Client::sendMessage(){
 	string auxiliarstring = this->stringStream.str();
 	const char *json = auxiliarstring.c_str();
 	if((send(this->socket_server, json, strlen(json), 0)) != INVALID_SOCKET){
-	//	cout << "auxiliarstring: "<< auxiliarstring << endl;
+		//	cout << "auxiliarstring: "<< auxiliarstring << endl;
 		this->leftSimpleQueue->pop();
 		return 0;
 	}else{
@@ -49,11 +49,31 @@ int Client::sendMessage(){
 	}
 };
 
-void Client::create(){
-	string own = "{\"ip\":\"192.168.43.234\",\"stars\":10}";
-	this->leftSimpleQueue->push(own);
+void Client::create(string option){
+	stringstream auxiliarStringStream;
+	if((option == "l") || (option == "L") ){
+		auxiliarStringStream << "{\"ip\":\"" << this->getIp().c_str() << "\",\"name\""<< this->getUserName() <<"\":\",\"orientation\":l}";
+		string own;
+		auxiliarStringStream >> own;
+		this->leftSimpleQueue->push(own);
+	}else if((option == "r") || (option == "R")){
+		auxiliarStringStream << "{\"ip\":\"" << this->getIp().c_str() << "\",\"name\""<< this->getUserName() <<"\":\",\"orientation\":r}";
+		string own;
+		auxiliarStringStream >> own;
+		this->rightSimpleQueue->push(own);
+	}
 	this->created = true;
 }
+
+string Client::getUserName(){
+	/* Obtiene el nombre del equipo. */
+	char * user_name = getenv("LOGNAME");
+	stringstream ss;
+	string userNameString;
+	ss << user_name;
+	ss >> userNameString;
+	return userNameString;
+};
 
 void Client::msleep(unsigned long milisec){
 	struct timespec req={0};

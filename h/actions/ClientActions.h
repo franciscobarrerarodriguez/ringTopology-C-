@@ -1,5 +1,7 @@
 #include "../thread/IRunnable.h"
 #include "../client/Client.h"
+#include "../thread/GenericThread.h"
+#include "../actions/MessageActions.h"
 
 #include<iostream>
 
@@ -10,7 +12,7 @@ class ClientActions:public IRunnable{
 public:
 
   ClientActions(Client *);
-
+  
   void initClient();
   void connectClient();
   void ownMessage();
@@ -19,6 +21,13 @@ public:
   void run();
 
 private:
+
   Client *client;
+
   bool state;
+
+  MessageActions *messageActions;
+
+  /* Hilo de mensaje. */
+  GenericThread *messageThread;
 };

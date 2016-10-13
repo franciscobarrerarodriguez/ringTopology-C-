@@ -3,6 +3,9 @@
 ClientActions::ClientActions(Client *client){
   this->client = client;
   this->state = true;
+
+  this->messageActions = new MessageActions(this->client);
+  this->messageThread = new GenericThread(this->messageActions);
 };
 
 void ClientActions::initClient(){
@@ -33,7 +36,7 @@ void ClientActions::sendMessages() {
       cout << "/* Mensaje no enviado */" << endl;
     }
   }else{
-    //cout << "/* Queue esta vacia. */" << endl;
+    cout << "/* Queue esta vacia. */" << endl;
   }
 };
 
@@ -47,6 +50,9 @@ void ClientActions::run() {
       this->connectClient();
       break;
       case 2:
+      cout << "/* Nodo funcionando . . . */" << endl;
+      /* Inicia el hilo para agregar mensajes. */
+      this->messageThread->createThread();
       this->sendMessages();
       break;
     }

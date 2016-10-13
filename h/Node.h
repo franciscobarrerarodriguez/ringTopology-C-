@@ -1,6 +1,5 @@
 #include "actions/ServerActions.h"
 #include "actions/ClientActions.h"
-#include "actions/MessageActions.h"
 #include "thread/GenericThread.h"
 //#include "queue/SimpleQueue.h"
 #include <queue>
@@ -34,11 +33,9 @@ private:
 
 	ServerActions *serverActions;
 	ClientActions *clientActions;
-	MessageActions *messageActions;
 
 	GenericThread *serverThread;
 	GenericThread *clientThread;
-	GenericThread *messageThread;
 
 	Client *client;
 	Server *server;

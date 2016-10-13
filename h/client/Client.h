@@ -8,6 +8,12 @@
 #include <sstream>
 #include <queue>
 
+#include <sys/types.h>
+#include <pwd.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
 // Lib rapidjson ----------------------------------------------------
 #include "../lib/rapidjson/include/rapidjson/document.h"
 #include "../lib/rapidjson/include/rapidjson/writer.h"
@@ -30,8 +36,9 @@ public:
 	int initializeClient();
 	int connectClient();
 	int sendMessage();
-	void create();
+	void create(string);
 
+	string getUserName();
 	void msleep(unsigned long);
 
 	void setPort(int port);
