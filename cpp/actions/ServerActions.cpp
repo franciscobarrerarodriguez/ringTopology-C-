@@ -28,6 +28,9 @@ void ServerActions::listenClient(){
 void ServerActions::acceptClient(){
   if(this->server->acceptClient() != INVALID_SOCKET){
     cout << "/* Cliente aceptado . . . */" << endl;
+    this->write = new Write(this->server);
+    this->writeThread = new GenericThread(this->write);
+    this->writeThread->createThread();
     this->server->setState(3);
   }else{
     cout << "/* Cliente no aceptado. */" << endl;

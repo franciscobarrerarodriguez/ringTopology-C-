@@ -20,6 +20,10 @@ void ClientActions::initClient(){
 void ClientActions::connectClient(){
   if(this->client->connectClient() != INVALID_SOCKET){
     cout << "/* Cliente conectado . . . */" << endl;
+    /* Aqui inica el hilo que se encarga de escuchar desde el cliente. */
+    this->listen = new Listen(this->client);
+    this->listenThread = new GenericThread(this->listen);
+    this->listenThread->createThread();
     this->client->setState(2);
   }else{
     cout << "/* Error conectando. */" << endl;
@@ -36,7 +40,7 @@ void ClientActions::sendMessages() {
       cout << "/* Mensaje no enviado */" << endl;
     }
   }else{
-    cout << "/* Queue esta vacia. */" << endl;
+    //cout << "/* Queue esta vacia. */" << endl;
   }
 };
 

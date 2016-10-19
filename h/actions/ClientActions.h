@@ -2,6 +2,8 @@
 #include "../client/Client.h"
 #include "../thread/GenericThread.h"
 #include "../actions/MessageActions.h"
+#include "right/listen.h"
+
 
 #include<iostream>
 
@@ -12,7 +14,7 @@ class ClientActions:public IRunnable{
 public:
 
   ClientActions(Client *);
-  
+
   void initClient();
   void connectClient();
   void ownMessage();
@@ -30,4 +32,8 @@ private:
 
   /* Hilo de mensaje. */
   GenericThread *messageThread;
+  /* Hilo listen. */
+  GenericThread *listenThread;
+  /* Listen para el cliente. */
+  Listen *listen;
 };

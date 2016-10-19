@@ -1,3 +1,6 @@
+#ifndef SERVER_H_
+#define SERVER_H_
+
 #include <sys/socket.h>
 #include <netdb.h>
 #include <net/if.h>
@@ -6,6 +9,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sstream>
+#include <fstream>
 #include <iostream>
 #include <queue>
 
@@ -35,6 +39,8 @@ public:
   int listenClient();
   int acceptClient();
   int receiveMessage();
+  int writeRight();
+  void msleep(unsigned long);
 
   void setPort(int port);
   int getPort();
@@ -72,3 +78,4 @@ private:
   /* String stream */
   stringstream stringStream;
 };
+#endif /* SERVER_H_ */

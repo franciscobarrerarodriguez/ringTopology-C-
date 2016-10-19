@@ -49,21 +49,71 @@ int Client::sendMessage(){
 	}
 };
 
+int Client::listenRight(){
+	char json[10000] = "";
+	if((recv(this->socket_server, json, sizeof(json), 0)) != INVALID_SOCKET){
+		this->stringStream.str("");
+		this->stringStream << json;
+		string auxiliarstring = this->stringStream.str();
+		this->rightSimpleQueue->push(auxiliarstring);
+		/* Limpiar la pantalla para mostrar el mensaje entrante. */
+		system("/usr/bin/clear");
+		cout << this->rightSimpleQueue->front() << endl;
+		return 0;
+	}else{
+		return INVALID_SOCKET;
+	}
+}
+
 void Client::create(string option){
 	stringstream auxiliarStringStream;
 	if((option == "l") || (option == "L") ){
-		auxiliarStringStream << "{\"ip\":\"" << this->getIp().c_str() << "\",\"name\""<< this->getUserName() <<"\":\",\"orientation\":l}";
+		auxiliarStringStream << "{\"ip\":\"" << this->ownIp() << "\",\"name\""<< this->getUserName() <<"\":\",\"orientation\":l}";
 		string own;
 		auxiliarStringStream >> own;
 		this->leftSimpleQueue->push(own);
 	}else if((option == "r") || (option == "R")){
-		auxiliarStringStream << "{\"ip\":\"" << this->getIp().c_str() << "\",\"name\""<< this->getUserName() <<"\":\",\"orientation\":r}";
+		auxiliarStringStream << "{\"ip\":\"" << this->ownIp() << "\",\"name\""<< this->getUserName() <<"\":\",\"orientation\":r}";
 		string own;
 		auxiliarStringStream >> own;
 		this->rightSimpleQueue->push(own);
 	}
 	this->created = true;
-}
+};
+
+string Client::ownIp(){
+	const char* google_dns_server = "8.8.8.8";
+	int dns_port = 53;
+	struct sockaddr_in serv;
+	int sock = socket ( AF_INET, SOCK_DGRAM, 0);
+	//Socket could not be created
+	if(sock < 0){
+		perror("Socket error");
+	}
+	memset( &serv, 0, sizeof(serv) );
+	serv.sin_family = AF_INET;
+	serv.sin_addr.s_addr = inet_addr( google_dns_server );
+	serv.sin_port = htons( dns_port );
+	int err = connect( sock , (const struct sockaddr*) &serv , sizeof(serv) );
+	struct sockaddr_in name;
+	socklen_t namelen = sizeof(name);
+	err = getsockname(sock, (struct sockaddr*) &name, &namelen);
+	char buffer[100];
+	const char* p = inet_ntop(AF_INET, &name.sin_addr, buffer, 100);
+	if(p != NULL){
+		printf("Local ip is : %s \n" , buffer);
+	}else{
+	//Some error
+		printf ("Error number : %d . Error message : %s \n" , errno , strerror(errno));
+	}
+	close(sock);
+	/**----------------------------------*/
+	stringstream ss;
+	string ownIp;
+	ss << buffer;
+	ss >> ownIp;
+	return ownIp;
+};
 
 string Client::getUserName(){
 	/* Obtiene el nombre del equipo. */
@@ -100,6 +150,14 @@ void Client::setIp(string ip){
 
 string Client::getIp(){
 	return this->ip;
+};
+
+void Client::setSocket_conn(int socket_conn){
+	this->socket_conn = socket_conn;
+};
+
+int Client::getSocket_conn(){
+	return this->socket_conn;
 };
 
 void Client::setSocket_server(int socket_server){

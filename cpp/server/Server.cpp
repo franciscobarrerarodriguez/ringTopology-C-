@@ -52,11 +52,38 @@ int Server::receiveMessage(){
     this->stringStream << json;
     string auxiliarstring = this->stringStream.str();
     this->leftSimpleQueue->push(auxiliarstring);
-    cout << "Este es el mensaje que llego: " << this->leftSimpleQueue->front() << endl;
+    /* Limpiar la pantalla para mostrar el mensaje entrante. */
+		system("/usr/bin/clear");
+    cout << this->leftSimpleQueue->front() << endl;
     return 0;
   }else{
     return INVALID_SOCKET;
   }
+};
+
+int Server::writeRight(){
+  /* PrepareJson */
+	this->stringStream.str("");
+	this->stringStream << this->rightSimpleQueue->front();
+	string auxiliarstring = this->stringStream.str();
+	const char *json = auxiliarstring.c_str();
+	if((send(this->socket_conn, json, strlen(json), 0)) != INVALID_SOCKET){
+		//	cout << "auxiliarstring: "<< auxiliarstring << endl;
+		this->rightSimpleQueue->pop();
+		return 0;
+	}else{
+		return INVALID_SOCKET;
+	}
+};
+
+void Server::msleep(unsigned long milisec){
+	struct timespec req={0};
+	time_t sec=(int)(milisec/1000);
+	milisec=milisec-(sec*1000);
+	req.tv_sec=sec;
+	req.tv_nsec=milisec*1000000L;
+	while(nanosleep(&req,&req)==-1)
+	continue;
 };
 
 /* Getters & Setters */
